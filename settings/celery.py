@@ -16,22 +16,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from kombu import Queue
+import os
 
-broker_url = 'amqp://guest:guest@localhost:5672//'
-result_backend = 'redis://localhost:6379/0'
+from celery import Celery
 
-accept_content = ['pickle',] # Values are 'pickle', 'json', 'msgpack' and 'yaml'
-task_serializer = "pickle"
-result_serializer = "pickle"
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
-timezone = 'Europe/Madrid'
+from django.conf import settings
 
-task_default_queue = 'tasks'
-task_queues = (
-    Queue('tasks', routing_key='task.#'),
-    Queue('transient', routing_key='transient.#', delivery_mode=1)
-)
-task_default_exchange = 'tasks'
-task_default_exchange_type = 'topic'
-task_default_routing_key = 'task.default'
+try:
+    from settings import celery_local as celery_settings
+except ImportError:
+    from settings import celery as celery_settings
+
+app = Celery('taiga')
+app.config_from_object(celery_settings)
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)

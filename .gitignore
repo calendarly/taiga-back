@@ -3,6 +3,7 @@
 *.log
 taiga/search
 settings/local.py
+settings/secret_key.py
 settings/celery_local.py
 database.sqlite
 logs
@@ -16,3 +17,6 @@ static
 .\#*
 .project
 .env
+0
+media3.tar.gz
+newrelic.ini

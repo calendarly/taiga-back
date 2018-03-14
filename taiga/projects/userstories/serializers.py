@@ -81,6 +81,8 @@ class UserStoryListSerializer(ProjectExtraInfoSerializerMixin,
     epics = MethodField()
     epic_order = MethodField()
     tasks = MethodField()
+    publish_date = Field()
+    publish_time = Field()
 
     def get_epic_order(self, obj):
         include_epic_order = getattr(obj, "include_epic_order", False)

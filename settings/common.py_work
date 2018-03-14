@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os.path, sys, os
-from .secret_key import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -215,7 +214,7 @@ STATICFILES_DIRS = (
 # Defautl storage
 #DEFAULT_FILE_STORAGE = "taiga.base.storage.FileSystemStorage"
 
-#SECRET_KEY = "aw3+t2r(8(0kkrhg8)gx6i96v5^kv%6cfep9wxfom0%7dy0m9e"
+SECRET_KEY = "aw3+t2r(8(0kkrhg8)gx6i96v5^kv%6cfep9wxfom0%7dy0m9e"
 
 TEMPLATES = [
     {
@@ -519,23 +518,23 @@ TAGS_PREDEFINED_COLORS = ["#fce94f", "#edd400", "#c4a000", "#8ae234",
 
 
 # Amazon S3 Bucket static setting
-AWS_STORAGE_BUCKET_NAME = BUCKET_NAME
-AWS_S3_REGION_NAME = S3_REGION_NAME  # e.g. us-east-2
-AWS_ACCESS_KEY_ID = ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY = SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = 'taiga-static-dynamic'
+AWS_S3_REGION_NAME = 'eu-west-1'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'AKIAJYQMNVWMEXHHNHGA'
+AWS_SECRET_ACCESS_KEY = 'tly/5Gp324I36zOokrB0ekvArKyJpt3WnRy10XJp'
 
 #AWS_LOCATION = 'Taiga-Control'
 # Tell django-storages the domain to use to refer to static files.
-AWS_S3_CUSTOM_DOMAIN = S3_CUSTOM_DOMAIN
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
 # you run `collectstatic`).
-STATICFILES_LOCATION = STATICFILES_LOCATIONS
-STATICFILES_STORAGE = STATICFILES_STORAGES
+STATICFILES_LOCATION = 'taiga-uat-static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 # Dynamic file path see custom_storages
-MEDIAFILES_LOCATION = MEDIAFILES_LOCATIONS
-DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGES
+MEDIAFILES_LOCATION = 'taiga-uat-media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 
 

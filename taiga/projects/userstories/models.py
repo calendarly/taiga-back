@@ -110,6 +110,8 @@ class UserStory(OCCModelMixin, WatchedModelMixin, BlockedMixin, TaggedMixin, mod
 
     tribe_gig = PickledObjectField(null=True, blank=True, default=None,
                                    verbose_name="taiga tribe gig")
+    publish_date = models.TextField(null=True, blank=True, verbose_name=_("publish date"))
+    publish_time = models.TextField(null=True, blank=True, verbose_name=_("publish time"))
 
     _importing = None
 
