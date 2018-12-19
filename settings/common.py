@@ -27,7 +27,7 @@ ADMINS = (
     ("Admin", "example@example.com"),
 )
 
-DEBUG = False
+DEBUG = True
 
 DATABASES = {
     "default": {
@@ -214,7 +214,7 @@ STATICFILES_DIRS = (
 # Defautl storage
 #DEFAULT_FILE_STORAGE = "taiga.base.storage.FileSystemStorage"
 
-SECRET_KEY = "egneirgoeoigegnegr(0-e0eter6i96vwgoepgjeigcfsf0m9e"
+SECRET_KEY = ""
 
 TEMPLATES = [
     {
@@ -419,7 +419,7 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend", # default
 )
 
-MAX_AGE_AUTH_TOKEN = None
+MAX_AGE_AUTH_TOKEN = 7 * 24 * 60 * 60 
 MAX_AGE_CANCEL_ACCOUNT = 30 * 24 * 60 * 60 # 30 days in seconds
 
 REST_FRAMEWORK = {
@@ -518,13 +518,14 @@ TAGS_PREDEFINED_COLORS = ["#fce94f", "#edd400", "#c4a000", "#8ae234",
 
 
 # Amazon S3 Bucket static setting
-AWS_STORAGE_BUCKET_NAME = 'taiga'
-AWS_S3_REGION_NAME = 'us-west-1'  # e.g. us-east-2
-AWS_ACCESS_KEY_ID = 'AIOHOIIOHUIUIUHUFEIOA'
-AWS_SECRET_ACCESS_KEY = 'iJ)(FE()JWHD*WD89w498eru48rw98ththw34h'
+AWS_STORAGE_BUCKET_NAME = ''
+AWS_S3_REGION_NAME = ''  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
+#AWS_LOCATION = 'Taiga-Control'
 # Tell django-storages the domain to use to refer to static files.
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '' % AWS_STORAGE_BUCKET_NAME
 
 # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
 # you run `collectstatic`).
@@ -540,7 +541,7 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Feedback module settings
 FEEDBACK_ENABLED = True
-FEEDBACK_EMAIL = "support@taiga.io"
+FEEDBACK_EMAIL = "calendarly.net@gmail.com"
 
 # Stats module settings
 STATS_ENABLED = False
@@ -567,9 +568,8 @@ GITLAB_VALID_ORIGIN_IPS = []
 
 EXPORTS_TTL = 60 * 60 * 24  # 24 hours
 
+WEBHOOKS_ENABLED = True
 CELERY_ENABLED = False
-WEBHOOKS_ENABLED = False
-
 
 # If is True /front/sitemap.xml show a valid sitemap of taiga-front client
 FRONT_SITEMAP_ENABLED = False
